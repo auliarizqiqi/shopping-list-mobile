@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_list/widgets/left_drawer.dart';
+import 'package:shopping_list/widgets/left_drawer.dart'; // Impor drawer yang sudah dibuat sebelumnya
 
 class ShopFormPage extends StatefulWidget {
-  const ShopFormPage({super.key});
+  const ShopFormPage({Key? key});
 
   @override
   State<ShopFormPage> createState() => _ShopFormPageState();
@@ -17,21 +17,22 @@ class _ShopFormPageState extends State<ShopFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text(
-              'Form Tambah Produk',
-            ),
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            'Form Tambah Produk',
           ),
-          backgroundColor: Colors.indigo,
-          foregroundColor: Colors.white,
         ),
-        drawer: const LeftDrawer(),
-        body: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        backgroundColor: Colors.indigo,
+        foregroundColor: Colors.white,
+      ),
+      drawer: const LeftDrawer(), // Tambahkan drawer yang sudah dibuat di sini
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -65,7 +66,6 @@ class _ShopFormPageState extends State<ShopFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  // TODO: Tambahkan variabel yang sesuai
                   onChanged: (String? value) {
                     setState(() {
                       _price = int.parse(value!);
@@ -94,7 +94,6 @@ class _ShopFormPageState extends State<ShopFormPage> {
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      // TODO: Tambahkan variabel yang sesuai
                       _description = value!;
                     });
                   },
@@ -126,8 +125,9 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Nama: $_name'),
-                                    Text('Price: $_price'),
-                                    Text('Description: $_description'),
+                                    Text('Harga: $_price'),
+                                    Text('Deskripsi: $_description'),
+                                    // Tambahkan value lainnya jika ada
                                   ],
                                 ),
                               ),
@@ -142,8 +142,8 @@ class _ShopFormPageState extends State<ShopFormPage> {
                             );
                           },
                         );
+                        _formKey.currentState!.reset();
                       }
-                      _formKey.currentState!.reset();
                     },
                     child: const Text(
                       "Save",
@@ -152,8 +152,10 @@ class _ShopFormPageState extends State<ShopFormPage> {
                   ),
                 ),
               ),
-            ]),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
